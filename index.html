@@ -46,7 +46,22 @@ const constraints = {
   video: true
 }
 
-myDevices.getUserMedia(constraints);
+async function getMedia(constraints){
+  let stream = null;
+  try{
+  stream = await navigator.mediaDevices.getUserMedia(constraints)
+  video.srcObject = stream;
+  }
+  catch(error){
+    console.error("inside showcam" + error);
+    video.style.left = '-9999px';
+    container.innerHTML = '<h2>Oops something went wrong, check your camera</h2>';
+  }
+}
+
+getMedia(constraints);
+
+//myDevices.getUserMedia(constraints);
 
 
 
@@ -56,11 +71,18 @@ myDevices.getUserMedia(constraints);
     2. Set the srcObject of the video to stream 
     3. Call the function by appending .then() to getUserMedia(constraints) */
 
-function showCam(stream){
-  video.srcObject = stream;
-}
+// function showCam(stream){
+//   try{
+//   video.srcObject = stream;
+//   }
+//   catch(error){
+//     console.error("inside showcam" + error);
+//     video.style.left = '-9999px';
+//     container.innerHTML = '<h2>Oops something went wrong, check your camera</h2>';
+//   }
+// }
 
-myDevices.getUserMedia(constraints).then(showCam);
+// myDevices.getUserMedia(constraints).then(showCam);
 
 
 
@@ -88,6 +110,7 @@ myDevices.getUserMedia(constraints).then(showCam);
      2. Inside the function, use the style property to apply the appropriate CSS filter style to the video tag,
      depending on which button is clicked.
      */
+
     const btns = document.querySelectorAll('button');
 
     btns.forEach(function (button) {
@@ -97,7 +120,32 @@ myDevices.getUserMedia(constraints).then(showCam);
       });
     });
 
+function addEffect(id){
+if(id == reset){
+video.style.cssText = '';
+console.log('reset')
+}
+if(id == mirror){
+video.style.cssText = `-moz-transform: scale(-1, 1);
+-webkit-transform: scale(-1, 1);
+-o-transform: scale(-1, 1);
+-ms-transform: scale(-1, 1);
+transform: scale(-1, 1);`;
+}
+if(id == sepia){
+video.style.cssText = '';
+}
+if(id == bw){
+video.style.cssText = '';
+}
+if(id == invert){
+video.style.cssText = '';
+}
+if(id == pause){
+video.style.cssText = '';
+}
 
+}
    
   </script>
 </body>
