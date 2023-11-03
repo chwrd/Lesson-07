@@ -111,43 +111,42 @@
      depending on which button is clicked.
      */
 
-    const btns = document.querySelectorAll('button');
+    const btns = document.querySelectorAll("button");
 
-    btns.forEach(function (button) {
-      button.addEventListener('click', function () {
-        let id = this.id;
+    btns.forEach((button) => {
+      let id = button.id;
+      button.addEventListener('click', () => {
         addEffect(id);
       });
     });
 
     function addEffect(id) {
-      if (id == reset) {
+      if (id == "reset") {
         video.style.cssText = '';
-        console.log('reset')
+        console.log("reset")
       }
-      if (id == mirror) {
-        video.style.cssText = `-moz-transform: scale(-1, 1);
--webkit-transform: scale(-1, 1);
--o-transform: scale(-1, 1);
--ms-transform: scale(-1, 1);
-transform: scale(-1, 1);`;
+      if (id == "mirror") {
+        video.style.cssText += `-moz-transform: scale(-1, 1);
+        -webkit-transform: scale(-1, 1);
+        -o-transform: scale(-1, 1);
+        -ms-transform: scale(-1, 1);
+        transform: scale(-1, 1);`;
       }
-      if (id == sepia) {
-        video.style.cssText = "filter: sepia(1);";
+      if (id == "sepia") {
+        video.style.cssText += "filter: sepia(1);";
       }
-      if (id == bw) {
-        video.style.cssText =` -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);`;
+      if (id == "bw") {
+        video.style.cssText += ` -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);`;
       }
-      if (id == invert) {
-        video.style.cssText = "filter: invert(1);";
+      if (id == "invert") {
+        video.style.cssText += "filter: invert(1);";
       }
-      if (id == pause) {
-        video.stop();
+      if (id == "pause") {
+        video.pause();
       }
 
     }
-
   </script>
 </body>
 
